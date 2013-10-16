@@ -3,15 +3,15 @@ Hammer - the CLI tool (not only) for Foreman
 
 
 Hammer is a generic [clamp-based](https://github.com/mdub/clamp) CLI framework. 
-Hammer-cli provides just the core functionality. The core is extensible with plugins that contain application specific commands.
+Hammer-cli provides just the core functionality. The core is extensible using plugins that contain application-specific commands.
 
-Such architecture allows for easy customization according to your application setup. Nearly any Ruby script can be turned into a Hammer command so the possibilities are really wide. 
+This architecture allows for easy customization according to your application. Nearly any Ruby script can be turned into a Hammer command, so the possibilities are endless. 
 
-Currently available plugins are:
+Available plugins are currently:
   - [hammer-cli-foreman](https://github.com/theforeman/hammer-cli-foreman)  - commands corresponding to Foreman API
   - [hammer-cli-katello-bridge](https://github.com/theforeman/hammer-cli-katello-bridge) - set of commands provided by Katello CLI
 
-You also can easily add custom commands specific for your use, such as various bulk actions or admin tasks.
+You also can easily add custom commands for your specific use, such as bulk actions or admin tasks.
 
 
 Installation
@@ -26,14 +26,14 @@ Hammer CLI is packaged for the following RPM based distributions:
 
 ### Installation from RPMs
 
-#### Step 1: setup rpm repositories
+#### Step 1: setup yum repositories
 
 For Foreman 1.3 stable the hammer packages are part of your installation repo and you can skip this step.
 
-You can choose from stable or nightly repo. Nightly has more recent version of hammer packages, but it was subject to less testing so there is highr risk of issues.
-Add the Foreman rpm repository to your yum repo files. For Fedora installations replace 'el6' with 'f18' or 'f19' as appropriate.
+You can choose from stable or nightly repo. Nightly has more recent version of hammer packages, but it was subject to less testing so there is a higher risk of issues.
+Add the Foreman yum repository to your yum repo files. For Fedora installations replace 'el6' with 'f18' or 'f19' as appropriate.
 
-Choose stable
+Using stable:
 
 ```bash
 yum -y install http://yum.theforeman.org/releases/1.3/el6/x86_64/foreman-release.rpm
@@ -80,11 +80,11 @@ To install any other hammer plugin just make sure the appropriate gem is install
 
 ### Installation from DEBs
 
-#### Step 1: setup rpm repositories
+#### Step 1: setup apt repositories
 
 For Foreman 1.3 stable the hammer packages are part of your installation repo and you can skip this step.
 
-You can choose from stable or nightly repo. Nightly has more recent version of hammer packages, but it was subject to less testing so there is highr risk of issues.
+You can choose from stable or nightly repo. Nightly has more recent version of hammer packages, but it was subject to less testing so there is a higher risk of issues.
 
 Choose stable (don't forget to replace "squeeze" with version name of your system)
 
@@ -111,7 +111,7 @@ apt-get update && apt-get install ruby-hammer-cli
 ```
 
 #### Step 3: install plugins
-Currently, there are two plugins, both available as rpm packages.
+Currently, there are two plugins, both available as deb packages.
 
  - commands for managing foreman
 
@@ -158,7 +158,7 @@ To install any other hammer plugin just install the appropriate gem and follow w
 
 ### Installation from SOURCE
 
-If you can install hammer from git checkouts, you will need ```rake``` installed on your system.
+If you can install hammer from git checkouts, you will just need ```rake``` installed on your system.
 Clone and install CLI core
 
 ```bash
@@ -177,7 +177,7 @@ $ rake install
 $ cd ..
 ```
 
-and optionally some other plugins via any of the methods mentioned above.
+and optionally other plugins via any of the methods mentioned above.
 
 
 Configuration
@@ -185,16 +185,16 @@ Configuration
 
 ### Format and locations
 
-Configuration is by default looked for in the following places in that order:
+Configuration is set based on the following files, loaded in this order:
 
  - ```/etc/foreman/cli_config.yml```.
  - ```~/.foreman/cli_config.yml```
  - ```./config/cli_config.yml``` (config dir in CWD)
  - custom location specified on command line - ```-c CONF_FILE_PATH```
 
-The later has precedence if it redefines the same option.
+Later files have precedence if they redefine the same option.
 
-Hammer uses yaml formating for its configuration. Config file template is contained in the hammer_cli gem
+Hammer uses yaml formatting for its configuration. The config file template is contained in the hammer_cli gem
 
  ```bash
 gem contents hammer_cli|grep cli_config.template.yml
@@ -240,20 +240,20 @@ Plugin specific configuration should be nested under plugin's name.
 Use the hammer
 --------------
 
-Confirm your setup by running ```$ hammer -h``` and see if the desired commands are listed.
+Confirm your setup by running ```$ hammer -h``` and check that the desired commands are listed.
 
 
-And you are Done. Your hammer client is configured and ready to use.
+And you are done. Your hammer client is configured and ready to use.
 
 
 Autocompletion
 --------------
 
-It is necessary to copy script hammer_cli_complete to the bash_completion.d directory.
+It is necessary to copy the hammer_cli_complete script to the bash_completion.d directory.
 
     $ sudo cp hammer-cli/hammer_cli_complete /etc/bash_completion.d/
 
-Then in a new shell the completion should work.
+Then after starting a new shell, the completion should work.
 
 
 License
